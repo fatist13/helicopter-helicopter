@@ -8,13 +8,13 @@ cnv.height = 600;
 
 // Global Variables
 let heliImg = document.createElement("img");
-heliImg.src = "img/heliBlueTransparent.png";
+heliImg.src = "img/heliGreenTransparent.png";
 
 // Draw Function
 window.addEventListener("load", draw);
 
 function draw() {
-  console.log("draw");
+  drawStart();
 
   // Request Animation Frame
   requestAnimationFrame(draw);

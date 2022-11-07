@@ -17,6 +17,7 @@ function drawStart() {
   function runGame() {
     // logic
     moveHeli();
+    moveWalls();
     // draw
     drawGame();
   }
@@ -38,6 +39,27 @@ function drawStart() {
     
     // move helicopter by its speed
     heli.y += heli.speed;
+  }
+
+  function moveWalls() {
+    // wall 1
+    wall1.x += -3;
+    if (wall1.x + wall1.w < 0) {
+      wall1.x = wall3.x + 500;
+      wall1.y = Math.random() * 300 + 100;
+    }
+    // wall2
+    wall2.x += -3;
+    if (wall2.x + wall2.w < 0) {
+      wall2.x = wall1.x + 500;
+      wall2.y = Math.random() * 300 + 100;
+    }
+    // wall3
+    wall3.x += -3;
+    if (wall3.x + wall3.w < 0) {
+      wall3.x = wall2.x + 500;
+      wall3.y = Math.random() * 300 + 100;
+    }
   }
 
   // Draw Game Elements

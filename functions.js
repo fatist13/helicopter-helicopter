@@ -18,6 +18,7 @@ function drawStart() {
     // logic
     moveHeli();
     moveWalls();
+    checkCollisions();
     // draw
     drawGame();
   }
@@ -62,6 +63,24 @@ function drawStart() {
     }
   }
 
+function checkCollisions() {
+  // top and bottom green bar
+  if (heli.y < 50) {
+    gameOver();
+  } else if (heli.y + heli.h > cnv.height - 50) {
+    gameOver();
+  }
+  // crash in a wall
+
+}
+
+function gameOver() {
+  explosion.play();
+  state = "gameover";
+
+  setTimeout(reset, 2000);
+}
+
   // Draw Game Elements
   function drawGame() {
     drawMainComponents();
@@ -78,7 +97,7 @@ function drawStart() {
     ctx.strokeStyle = "red";
     ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.arc(240, 270, 60, 0, 2 * Math.PI);
+    ctx.arc(heli.x + heli.w / 2, heli.y + heli.h / 2, 60, 0, 2 * Math.PI);
     ctx.stroke();
   
     // Game Over Text
@@ -87,6 +106,37 @@ function drawStart() {
     ctx.fillText("GAME OVER", 350, 285);
   }
   // helper functions
+
+  function reset() {
+  state = "start";
+  heli = {
+  x: 200,
+  y: 250,
+  w: 80,
+  h: 40,
+  speed: 0,
+  accel: 0.5
+};
+  wall1 = {
+  x: cnv.width,
+  y: Math.random() * 300 + 100,
+  w: 50,
+  h: 100
+};
+  wall2 = {
+  x: cnv.width + 500,
+  y: Math.random() * 300 + 100,
+  w: 50,
+  h: 100
+};
+  wall3 = {
+  x: cnv.width + 1000,
+  y: Math.random() * 300 + 100,
+  w: 50,
+  h: 100
+};
+  }
+
   function drawWalls() {
     ctx.fillStyle = "green";
     ctx.fillRect(wall1.x, wall1.y, wall1.w, wall1.h);

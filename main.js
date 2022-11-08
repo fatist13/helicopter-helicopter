@@ -45,7 +45,7 @@ document.addEventListener("mouseup", mouseupHandler);
 
 function mousedownHandler() {
   mouseIsPressed = true;
-  
+  propeller.currentTime = 0;
   propeller.play();
 
   // start game on mouse pressed
@@ -56,4 +56,5 @@ function mousedownHandler() {
 
 function mouseupHandler() {
   mouseIsPressed = false;
+  propeller.pause();
 }
